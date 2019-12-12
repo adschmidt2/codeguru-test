@@ -28,9 +28,14 @@ public class TestController {
 
         concurrency();
 
+        concat("1","2");
+
         return "Up";
     }
 
+    private String concat (String a, String b) {
+        return a.concat(b);
+    }
 
     private void concurrency() {
 
