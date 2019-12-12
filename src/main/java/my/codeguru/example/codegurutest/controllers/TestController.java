@@ -20,17 +20,26 @@ import java.util.stream.IntStream;
 @RestController
 public class TestController {
 
+    private static List<Integer> longList = IntStream.range(0,1000000).boxed().collect(Collectors.toList());
     @Resource
     TaskExecutor taskExecutor;
 
     @RequestMapping("/test")
     public String index() {
 
+        processStaticList(longList);
+
         concurrency();
 
         concat("1","2");
 
+        int sum = processStaticList(longList);
+
         return "Up";
+    }
+    private int processStaticList(List<Integer> longList) {
+        int result = longList.stream().reduce(0,Integer::sum);
+        return result;
     }
 
     private String concat (String a, String b) {
