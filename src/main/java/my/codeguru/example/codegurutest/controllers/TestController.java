@@ -35,6 +35,11 @@ public class TestController {
 
         int sum = processStaticList(longList);
 
+        // invalid string comparison
+        if (String.valueOf(sum) == "0") {
+            throw new RuntimeException();
+        }
+
         return "Up";
     }
     private int processStaticList(List<Integer> longList) {
